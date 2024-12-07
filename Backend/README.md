@@ -77,3 +77,72 @@ A successful request returns the following response:
 - The **`email`** must be valid and unique.
 - The **`password`** must have at least 6 characters.
 - Store the **`token`** securely on the client side for authentication purposes.
+
+
+
+## `/users/login` Endpoint
+
+### **Description**
+Authenticates a user using their email and password, returning a JWT token upon successful login.
+
+---
+
+### **HTTP Method**
+`POST`
+
+---
+
+### **Endpoint**
+`/users/login`
+
+---
+
+### **Request Body**
+The request body should be in JSON format and include the following fields:
+
+- **`email`** *(string, required)*: User's email address (must be a valid email).
+- **`password`** *(string, required)*: User's password (minimum 6 characters).
+
+#### **Example Request**
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "securepassword"
+}
+```
+
+---
+
+### **Example Response**
+A successful request returns the following response:
+
+#### **Response Structure**
+- **`user`** *(object)*:
+  - **`fullname`** *(object)*:
+    - **`firstname`** *(string)*: User's first name.
+    - **`lastname`** *(string)*: User's last name.
+  - **`email`** *(string)*: User's email address.
+  - **`password`** *(string)*: User's password.
+- **`token`** *(string)*: JWT token for authentication.
+
+#### **Example Response**
+```json
+{
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "securepassword"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+---
+
+### **Notes**
+- Ensure that the **`email`** and **`password`** fields are included and valid.
+- The **`password`** must have at least 6 characters.
+- Store the **`token`** securely for user authentication in future requests.
