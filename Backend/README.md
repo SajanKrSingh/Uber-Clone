@@ -78,33 +78,35 @@ A successful request returns the following response:
 - The **`password`** must have at least 6 characters.
 - Store the **`token`** securely on the client side for authentication purposes.
 
-
- ---
 ## `/users/login` Endpoint
- ---
 
 ### **Description**
+
 Authenticates a user using their email and password, returning a JWT token upon successful login.
 
 ---
 
 ### **HTTP Method**
+
 `POST`
 
 ---
 
 ### **Endpoint**
+
 `/users/login`
 
 ---
 
 ### **Request Body**
+
 The request body should be in JSON format and include the following fields:
 
-- **`email`** *(string, required)*: User's email address (must be a valid email).
-- **`password`** *(string, required)*: User's password (minimum 6 characters).
+- **`email`** _(string, required)_: User's email address (must be a valid email).
+- **`password`** _(string, required)_: User's password (minimum 6 characters).
 
 #### **Example Request**
+
 ```json
 {
   "email": "john.doe@example.com",
@@ -115,18 +117,21 @@ The request body should be in JSON format and include the following fields:
 ---
 
 ### **Example Response**
+
 A successful request returns the following response:
 
 #### **Response Structure**
-- **`user`** *(object)*:
-  - **`fullname`** *(object)*:
-    - **`firstname`** *(string)*: User's first name.
-    - **`lastname`** *(string)*: User's last name.
-  - **`email`** *(string)*: User's email address.
-  - **`password`** *(string)*: User's password.
-- **`token`** *(string)*: JWT token for authentication.
+
+- **`user`** _(object)_:
+  - **`fullname`** _(object)_:
+    - **`firstname`** _(string)_: User's first name.
+    - **`lastname`** _(string)_: User's last name.
+  - **`email`** _(string)_: User's email address.
+  - **`password`** _(string)_: User's password.
+- **`token`** _(string)_: JWT token for authentication.
 
 #### **Example Response**
+
 ```json
 {
   "user": {
@@ -144,6 +149,62 @@ A successful request returns the following response:
 ---
 
 ### **Notes**
+
 - Ensure that the **`email`** and **`password`** fields are included and valid.
 - The **`password`** must have at least 6 characters.
 - Store the **`token`** securely for user authentication in future requests.
+
+## `/users/profile` Endpoint
+
+### Description
+
+Retrieves the profile information of the currently authenticated user.
+
+### HTTP Method
+
+`GET`
+
+### Authentication
+
+Requires a valid JWT token in the Authorization header:  
+`Authorization: Bearer <token>`
+
+### Example Response
+
+```json
+{
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+```
+
+---
+
+## `/users/logout` Endpoint
+
+### Description
+
+Logs out the current user and blacklists the token provided in the cookie or headers.
+
+### HTTP Method
+
+`GET`
+
+### Authentication
+
+Requires a valid JWT token in the Authorization header or cookie.
+
+### Example Response
+
+```json
+{
+  "message": "Logout successful."
+}
+```
+
+---
