@@ -79,8 +79,9 @@ A successful request returns the following response:
 - Store the **`token`** securely on the client side for authentication purposes.
 
 
-
+ ---
 ## `/users/login` Endpoint
+ ---
 
 ### **Description**
 Authenticates a user using their email and password, returning a JWT token upon successful login.
