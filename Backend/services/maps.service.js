@@ -24,7 +24,10 @@ module.exports.getAddressCoordinate = async (address) => {
       throw new Error("Unable to fetch coordinates: " + response.data.status);
     }
   } catch (error) {
-    console.error(`Error fetching coordinates for address: ${address}`, error.message);
+    console.error(
+      `Error fetching coordinates for address: ${address}`,
+      error.message
+    );
     throw new Error(`Error fetching coordinates: ${error.message}`);
   }
 };
@@ -52,7 +55,10 @@ module.exports.getDistanceTime = async (origin, destination) => {
       throw new Error("Unable to fetch distance and time");
     }
   } catch (err) {
-    console.error(`Error fetching distance and time for ${origin} to ${destination}`, err.message);
+    console.error(
+      `Error fetching distance and time for ${origin} to ${destination}`,
+      err.message
+    );
     throw new Error(`Error fetching distance and time: ${err.message}`);
   }
 };
@@ -77,7 +83,10 @@ module.exports.getAutoCompleteSuggestions = async (input) => {
       throw new Error("Unable to fetch suggestions");
     }
   } catch (err) {
-    console.error(`Error fetching autocomplete suggestions for input: ${input}`, err.message);
+    console.error(
+      `Error fetching autocomplete suggestions for input: ${input}`,
+      err.message
+    );
     throw new Error(`Error fetching suggestions: ${err.message}`);
   }
 };
@@ -88,7 +97,9 @@ module.exports.getCaptainsInTheRadius = async (ltd, lng, radius) => {
   }
 
   try {
-    console.log(`Searching captains at Latitude: ${ltd}, Longitude: ${lng}, Radius: ${radius} km`);
+    console.log(
+      `Searching captains at Latitude: ${ltd}, Longitude: ${lng}, Radius: ${radius} km`
+    );
     const captains = await captainModel.find({
       location: {
         $geoWithin: {
