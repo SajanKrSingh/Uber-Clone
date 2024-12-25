@@ -26,7 +26,7 @@ const LookingForDriver = ({
       };
 
       const response = await axios.post(
-        `http://localhost:3000/rides/create`,
+        `${import.meta.env.VITE_BASE_URL}/rides/create`,
         rideDetails,
         {
           headers: {
